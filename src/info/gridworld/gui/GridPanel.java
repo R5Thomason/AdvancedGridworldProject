@@ -115,9 +115,9 @@ public class GridPanel extends JPanel implements Scrollable,
         try
         {
         	//for School
-            img = ImageIO.read(new File("C:/Users/rtho5657/Documents/Java Workspace/AdvancedGridworldProject/src/Space.jpg"));
+//            img = ImageIO.read(new File("C:/Users/rtho5657/Documents/Java Workspace/AdvancedGridworldProject/src/Space.jpg"));
         	//for home
-//        	img = ImageIO.read(new File("/Users/RyanJ/Documents/javaworkspace/AdvancedGriworldProject/src/Space.jpg"));
+        	img = ImageIO.read(new File("/Users/RyanJ/Documents/javaworkspace/AdvancedGridworldProject/src/Space.jpg"));
         }
         catch(IOException error)
         {
