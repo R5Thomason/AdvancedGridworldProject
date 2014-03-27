@@ -114,12 +114,16 @@ public class GridPanel extends JPanel implements Scrollable,
         
         try
         {
+        	//for School
             img = ImageIO.read(new File("C:/Users/rtho5657/Documents/Java Workspace/AdvancedGridworldProject/src/Space.jpg"));
+        	//for home
+//        	img = ImageIO.read(new File("/Users/RyanJ/Documents/javaworkspace/AdvancedGriworldProject/src/Space.jpg"));
         }
         catch(IOException error)
         {
-            
+            System.out.println(error.getMessage());
         }
+        
         g2.drawImage(img, insets.left, insets.top, numCols*(cellSize + 1) + 1, numRows*(cellSize + 1)+ 1, 0, 0, img.getWidth(), img.getHeight(), null);
 
         drawWatermark(g2);
