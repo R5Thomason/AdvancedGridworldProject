@@ -1,5 +1,7 @@
 package info.gridworld.actor;
 
+import info.gridworld.grid.Grid;
+import info.gridworld.grid.Location;
 import info.gridworld.world.World;
 
 import java.awt.Color;
@@ -24,20 +26,57 @@ public class SpaceWhale extends Rock
 	
 	public void processActors(ArrayList<Actor> otherActors)
 	{
-		FirstRocketShip ship = new FirstRocketShip();
-		SecondRocketShip shipTwo = new SecondRocketShip();
-		int numberOfNeighborShips = 0;
+		BlackHole blackHole = new BlackHole();
 		for (Actor neighbor : otherActors)
 		{
-			if(otherActors.contains(ship))
+			if(otherActors.size() == 2 && !otherActors.contains(blackHole))
 			{	
-				numberOfNeighborShips++;
-				if(numberOfNeighborShips == 2)
-				{
-					
-				}
+				moveTo(findRandomEmptyLocation());
 			}
 		}
+	}
+	
+	public Location findRandomEmptyLocation()
+	{
+		Grid<Actor> currentGrid = getGrid();
+		
+		if (currentGrid == null)
+		{
+			return null;
+		}
+		
+		if(currentGrid.getNumCols() == -1)
+		{
+			int randomX = (int) (Math.random() *100);
+			int randomY = (int) (Math.random() * 100);
+			Location newSpot = new Location(randomX, randomY);
+			
+			while(currentGrid.get(newSpot) != null)
+			{
+				randomX = (int) (Math.random() * 100);
+				randomY = (int) (Math.random() * 100);
+				newSpot = new Location(randomX, randomY);
+			}
+			
+			return newSpot;
+		}
+		else
+		{
+			int randomX = (int) (Math.random() * 100) % currentGrid.getNumRows();
+			int randomY = (int) (Math.random() * 100) % currentGrid.getNumCols();
+			
+			Location newSpot = new Location(randomX, randomY);
+			
+			while(currentGrid.get(newSpot) != null)
+			{
+				randomX = (int) (Math.random() * 100) % currentGrid.getNumRows();
+				randomY = (int) (Math.random() * 100) % currentGrid.getNumCols();
+				newSpot = new Location(randomX, randomY);
+			}
+			
+			return newSpot;
+		}
+		
 	}
 	
 	public void act()
@@ -46,6 +85,7 @@ public class SpaceWhale extends Rock
 		{
 			return;
 		}
+		
 		ArrayList<Actor> neighbors = getActors();
 		processActors(neighbors);
 	}
