@@ -1,6 +1,6 @@
 package info.gridworld.actor;
 
-public class SecondRocketShip extends FirstRocketShip
+public class SecondRocketShip extends RocketShip
 {
 
 }
